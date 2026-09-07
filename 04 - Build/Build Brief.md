@@ -4,6 +4,7 @@ Build sessions live here: one dated folder per build, holding whatever that buil
 
 ## Builds
 
+- **26.09.07 - Part 5 - POS Sync**: the fifth run. Holds the Context Record, the handoff brief with its nature pass, the build log with every node id, the delivery report, and the behind-the-scenes audit. The Part 5 board sits below Part 4; the orchestrator half is drawn bracketed with TBD badges because it is designed and not built; a working board awaiting Sam's three approvals.
 - **26.09.07 - Part 4 - Document Canonicalization**: the fourth run. Holds the Context Record, the handoff brief with its nature pass, the build log with every node id, the delivery report, and the behind-the-scenes audit. The Part 4 board sits below Part 3; a working board awaiting Sam's three approvals.
 - **26.09.07 - Part 3 - Notification Delivery**: the third run. Holds the Context Record, the handoff brief with its nature pass, the build log with every node id, the delivery report, and the behind-the-scenes audit. The Part 3 board sits below Part 2; a working board awaiting Sam's three approvals.
 - **26.09.06 - Part 2 - Email Ingestion**: the second run, begun the same evening and finished on 2026-09-07. Holds the Context Record, the handoff brief with its nature pass, the build log with every node id, the delivery report, and the behind-the-scenes audit. The Part 2 board sits below Part 1 on VISUAL DOCUMENTATION; a working board awaiting Sam's three approvals.

@@ -176,6 +176,7 @@ Flow checks before approval: the whole part is understandable in about ten secon
 10. **The principle pill has no variant of its own.** On the Part 1 board and the Principles sheet it is a Color Tag, Orange variant, with its fill rebound to `Levels/Principles/Outline` and its text to `Levels/Principles/Color`. A dedicated Principles variant in the Color Tag set would remove the per-instance rebinding.
 11. **Nine text-only location marks** after Gmail was added on 2026-09-07 for the Part 2 board. Each needs the platform's own vector.
 12. **Card text wraps** since 2026-09-07: the Container Field Plain Text value and all three Table Components columns are auto height and fill width, so long values wrap instead of clipping. Kept here until the rule is written into section 4.
+14. **The TBD badge has no piece.** `Instructions.md` says undecided states get a TBD badge and undecided names render in brackets. The Part 5 board, 2026-09-07, draws the designed-not-wired orchestrator half with bracketed names and a Color Tag, Grey variant, reading TBD · DESIGNED, NOT WIRED, under the first tag of each designed cluster. A dedicated badge, or a ruling that the grey tag is it, is needed.
 13. **A feedback loop has no piece.** The Part 3 board draws the return of an event to the stream as a line above the rail that rejoins at its start, the same convention as the door branches. A legend entry, or a ruling that loops are not drawn, is needed.
 
 ## 9. What this document replaced

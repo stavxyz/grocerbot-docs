@@ -94,6 +94,10 @@ Known leftovers, none blocking:
 - The principle pill is a rebound Color Tag, not a variant of its own.
 - The board is a working board. None of the release checks in Visual Rules section 7 has been approved.
 
+## 2026-09-07, changes from the Part 2 build
+
+Two legend component changes made for Part 2 reach this board: Plain Text field values and table type cells now wrap. The Diff engine card `9043:72199` grew by 32 px and its tie `tie:diff-snapshots:0` was re-anchored to the new bottom edge (y 1941). The Card Skeletons header marks on the legend were also re-pointed from deleted DRAPER variants, which closes the leftover recorded above. Verified from a fresh screenshot of the Diff engine card and the Faktory and BEK portal cards.
+
 ## Next
 
 Sam's three approvals on the Part 1 board: semantics, visuals, release checks. Then Part 2 or the SYSTEM REGISTRY page, which is still empty.

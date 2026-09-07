@@ -51,6 +51,7 @@ Frame `P2 · Email Ingestion`, node `9058:72874`, 9100 by 3243, placed at y 3643
 - Tools set `9018:442`: new text-only variant `Tool=Gmail` (`9058:538`), cloned from the BEK mark. Glyph TBD, like the other eight text-only marks.
 - Card Skeletons `9018:1361`: the Data skeleton header (`9018:1425`) and External Tool skeleton header (`9018:1433`) pointed at deleted DRAPER variants (Supabase, Calendly) with text overrides; now `Tool=PostgreSQL` and `Tool=BEK`. This was the Part 1 leftover.
 - Container Field `9018:1295`, Plain Text variant: the value text (`9018:1299`) is now auto height and fill width, so long values wrap instead of running past the card edge. Part 1's Plain Text values were all short; that board was re-screenshotted after the change.
+- Table Components `9018:1335`: the type-column text in the Header, Row, and Changed Row variants is now auto height and fill width, so long type values wrap inside the 130 px column instead of clipping. This grew the Rules engine card to 865 and the Resolver to 755 here, and the Part 1 Diff engine card by 32 px; the two data ties that hung from those cards (`tie:rules-attachments:0` here, `tie:diff-snapshots:0` on Part 1) were re-anchored to the new card bottoms and both boards re-screenshotted.
 
 ## How the cards were built
 

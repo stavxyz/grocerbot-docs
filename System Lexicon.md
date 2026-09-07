@@ -63,3 +63,4 @@ Things that need a name or whose name is in question. A row leaves when the owne
 | 4 | review | The orchestrator's polled collection versus core's stage copies | snapshot (both) | One word, two things | code |
 | 5 | review | The human roles reading Discord | buyers (role key); operators; staff | Only `buyers` is named in code | `pipelines/bek.yaml` |
 | 6 | review | The canonical event envelope's level | Artifact (Part 3 renders it); Data (a record on a stream no human reads) | Decides which lane it sits in on every board | Part 1 handoff brief |
+| 7 | Part 2 build | The 30-day email key on Message-ID and the 24-hour canonical key on the business event | dedup (both); email dedup keys; dedup keys | One word, two keys with different scopes and lifetimes; the Part 2 board uses the two-word forms | `email_dedup.py`, `events.py` |

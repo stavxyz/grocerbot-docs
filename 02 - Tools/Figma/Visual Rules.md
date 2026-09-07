@@ -175,7 +175,8 @@ Flow checks before approval: the whole part is understandable in about ten secon
 9. **Grain badges for keys, streams, and objects.** The Change Tag set has only ROW and TABLE, so Redis keys and the R2 object carry ROW and the stream carries TABLE. A KEY, STREAM, or OBJECT variant would need a new component.
 10. **The principle pill has no variant of its own.** On the Part 1 board and the Principles sheet it is a Color Tag, Orange variant, with its fill rebound to `Levels/Principles/Outline` and its text to `Levels/Principles/Color`. A dedicated Principles variant in the Color Tag set would remove the per-instance rebinding.
 11. **Nine text-only location marks** after Gmail was added on 2026-09-07 for the Part 2 board. Each needs the platform's own vector.
-12. **The Plain Text field value wraps** since 2026-09-07: the Container Field Plain Text variant's value text is auto height and fill width. Long values on both boards wrap instead of clipping. Kept here until the rule is written into section 4.
+12. **Card text wraps** since 2026-09-07: the Container Field Plain Text value and all three Table Components columns are auto height and fill width, so long values wrap instead of clipping. Kept here until the rule is written into section 4.
+13. **A feedback loop has no piece.** The Part 3 board draws the return of an event to the stream as a line above the rail that rejoins at its start, the same convention as the door branches. A legend entry, or a ruling that loops are not drawn, is needed.
 
 ## 9. What this document replaced
 

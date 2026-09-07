@@ -41,6 +41,7 @@ Vendor portal monitoring; email ingestion; notification delivery; document canon
 - **witness**, **projection**, **family**, **tier**, **composition**: the ledger's vocabulary. Settled in code and spec.
 - **connection** (POS): a `pos_connections` row, a tenant's link to one Clover merchant. Settled in code. Collides with the Process piece word Connection; documentation qualifies it as **POS connection**.
 - **adapter**: used for both vendor document adapters (`core/adapters/`) and POS write adapters (`core/pos/adapters/`). The POS spec rules that prose always qualifies: **document adapter** versus **POS adapter**.
+- **pass**: one trip of an event through the notifier. A notification makes three: raw, augmented, canonicalized. Working term from the Part 3 board's captions; the code has no word for it. Not settled.
 - **door**: one of the ways a `vendor.poll` job gets pushed: the scheduler tick, `gbo trigger`, or the Part 2 email rule action. Working term from the Part 1 board caption `OTHER DOORS`; the code's word is the `source` column of `job_enqueues`, with values `scheduler`, `cli`, and `email_rule`. Not settled.
 - **harness**: DRAPER's word for its AI-call runner and for the root logic block describing it. In GrocerBot the word does not name any component; `Logic - Harness.md` keeps the file name only because the Function calls it.
 

@@ -167,7 +167,7 @@ Flow checks before approval: the whole part is understandable in about ten secon
 1. Ruled 2026-09-06: the tag is an **Operation**. Kept for history.
 2. **Principles level tints** as variables, and whether Principles get a legend sheet each or one sheet listing seven.
 3. Drawn without one on the Part 1 board, 2026-09-06: the running processes are Agent actors on the rail and Piping Runner or Router cards below it; no Agent card exists. Open until Sam approves the board.
-4. Drawn on the Part 1 board, 2026-09-06: a CLI interface is a dark Code block with an Eyebrow naming the surface, such as `OPERATOR TERMINAL · GBO`, and one command line. Open until Sam approves the board.
+4. Drawn on the Part 1 board, 2026-09-06: a CLI interface is a dark Code block with an Eyebrow naming the surface, such as `OPERATOR TERMINAL · GBO`, and one command line. Open until Sam approves the board. Used again on the Part 4 board, 2026-09-07, for an HTTP request the operator makes by hand (`OPERATOR · HTTP TO CORE`, one PUT line), since core has no CLI for mappings; the convention then covers any operator-typed line, not only a CLI.
 5. Drawn on the Part 1 board, 2026-09-06, as section 5 now describes. Open until Sam approves the board.
 6. **GrocerBot's Locations source list** and logotype colours.
 7. Ruled 2026-09-06 on the Part 1 board: the rail carries only the steps that change what the store knows; bookkeeping steps (locks, audit rows, workflow runs, dedup registration) are Operation fields inside the Piping or Data card that performs them. That is the Process versus Piping boundary for machinery steps. Kept for history.

@@ -73,3 +73,7 @@ Surfaced for the owner and not yet discussed.
 ## Full inventory
 
 A read-only sweep on 2026-09-06 produced a per-item inventory with `file:line` citations covering endpoints, the pipeline stages, every table, the POS subsystem, the ledger, storage, tenancy, seed, and the client package. Its most surprising claims were spot-checked against the source and held. The inventory was a working artifact of that session; the citations above point at the same places.
+
+## Issues filed
+
+Findings verified end to end in the code during the documentation runs are filed on `parconditio/grocerbot-core`; each Part's Delivery Report lists the numbers it filed. The first, from Part 4 on 2026-09-07, concerns `seed.py` overwriting taught mappings on every deploy.

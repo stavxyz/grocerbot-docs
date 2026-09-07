@@ -1,0 +1,9 @@
+# DRAPER Doc Review - Z-Extra -- Quick Thought: Knowledge & Media Sourcing Client Interfaces
+
+> Voice memo, September 3, 2026. One speaker: Buck. Verbatim transcription (2.2 minutes).
+
+Yeah, so when we go from strategy to sourcing, I kind of left off on this in the last voice memo. It looks like, Erik, you've already corrected putting the, like, visual reference sourcing, visual reference exploration in front of the other shit, which is like knowledge and media-based stuff.
+
+But we need to get very clear. Holy shit, what's this long leg at the end? Knowledge architecture. Knowledge requests. Upload. Okay. Got it. Cool. Oh my god. Yeah, those interfaces. I'm just sorry, jumping ahead. Man, if we could put media gathering and knowledge gathering on them. I mean, that's the meaning, like, in our quoting process, we make it clear, like, hey, this isn't feedback. We, and we don't even vaguely allude to it. We show them, like, so this is how it's going to look. And we're going to get to this point in the process. We're going to send you something, like, it's on you to, like, fill this out. Huh?
+
+And I think what makes it tough is, like, some clients are going to have a lot of media. Some are going to have none. Same with knowledge. The ones that have a lot, as long as they are agreeing to do this for us, that makes our job, like, so much easier, versus the ones that have, like, none pulled together, and we're going to have to go out and research, go out and find, use stock photos, go out and make photos, go out and research and compile these knowledge reports to process. So that's more work on us. So that should affect quoting. But goddammit, it would be beautiful if, like, that knowledge and, and, uh, media upload, tagging, review process sucks, but it's also, maybe they're not, like, good enough to do that. Um, just a quick thought. Okay.

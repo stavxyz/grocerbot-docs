@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Draper. How it ran. How it will run.</title>
+<style>
+  :root{
+    --ink:#1A1A18; --mute:#7C7C77; --faint:#B5B5B0; --line:#D9D9D5; --row:#E9E9E6; --surface:#FBFBFB; --tile:#F1F1EF; --page:#ECECEA;
+    --process:#252525; --process-w:#FBFBFB;
+    --piping:#6F4E27;  --piping-w:#F9F6F2;
+    --fn:#2F8278;      --fn-w:#F0F7F6;
+    --logic:#6D35E9;   --logic-w:#FAF8FE;
+    --art:#1764C0;     --art-w:#F0F6FE;
+    --data:#D83A9A;    --data-w:#FCF7FB;
+    --trig:#C47C62;    --trig-w:#FBF1EC;
+    --bad:#B0512E;     --bad-w:#FBEFEA;
+    --serif:Inter,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"Source Code Pro",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{margin:0;background:var(--page);color:var(--ink);font:15px/1.5 var(--serif);letter-spacing:-.005em}
+  .mono{font-family:var(--mono)}
+  .page{min-width:2100px;padding:48px 64px 72px}
+  header{max-width:1400px;margin-bottom:36px}
+  h1{margin:0 0 12px;font:600 36px/1.15 var(--serif);letter-spacing:-.02em}
+  header p{margin:0;font-size:17px;line-height:1.55;color:var(--mute);max-width:1100px}
+  header p b{color:var(--ink);font-weight:600}
+  .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .side{background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:32px 32px 28px}
+  .side>h2{margin:0 0 8px;font:600 26px/1.2 var(--serif);letter-spacing:-.015em}
+  .side>.sub{margin:0 0 8px;color:var(--mute);font-size:15px;line-height:1.55;max-width:820px}
+  .foot{grid-column:1/-1;background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:22px 28px;font-size:15px;line-height:1.55}
+  .foot b{font-weight:600}
+  .row{margin-top:30px}
+  .rowlabel{display:flex;align-items:baseline;gap:12px;font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:0 0 12px}
+  .rowlabel .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:999px;border:1.2px solid var(--line);font:600 11px/1 var(--mono);color:var(--ink);letter-spacing:0}
+  .rowlabel .n.bad{border-color:var(--bad);color:var(--bad)}
+  .rowlabel .n.good{border-color:var(--fn);color:var(--fn)}
+  .rownote{margin:-4px 0 12px;font-size:13px;line-height:1.5;color:var(--mute);max-width:820px}
+  .cards{display:grid;gap:14px}
+  .c3{grid-template-columns:repeat(3,1fr)} .c4{grid-template-columns:repeat(4,1fr)} .c5{grid-template-columns:repeat(5,1fr)}
+  .piece{position:relative;background:#fff;border:1.5px solid var(--lv);border-radius:4px;overflow:hidden}
+  .piece::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lv)}
+  .piece .top{background:var(--lw);border-bottom:1.25px solid var(--line);padding:8px 14px 8px 16px;display:flex;justify-content:flex-end;font:500 11px/1 var(--serif);letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+  .piece .body{padding:14px 16px 16px 18px}
+  .piece .title{display:flex;align-items:center;gap:10px;font:600 15px/1.25 var(--serif);letter-spacing:-.01em;margin:0 0 8px}
+  .piece .title .t{width:20px;height:20px;border-radius:4px;background:var(--lw);border:1px solid var(--line);flex:none;display:grid;place-items:center;font-size:11px;color:var(--lv)}
+  .piece p{margin:0;font-size:13px;line-height:1.5}
+  .piece p+p{margin-top:6px}
+  .piece p.q{color:var(--mute)}
+  .piece .desc{border:1px solid var(--line);background:var(--surface);border-radius:3px;padding:8px 10px;font:400 13px/1.45 var(--serif);color:var(--mute);margin:0 0 12px}
+  .panel{border:1px solid var(--line);background:var(--surface);border-radius:3px;padding:12px 14px}
+  .panel .pn{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:12px}
+  .panel p{margin:0;font-size:13px;line-height:1.55}
+  .warn{margin-top:10px;font-size:13px;line-height:1.45;color:var(--bad)}
+  .caps{display:flex;flex-wrap:wrap;gap:8px}
+  .cap{display:inline-flex;align-items:center;gap:8px;border:1.2px solid var(--cv);color:var(--cv);border-radius:999px;padding:5px 12px 5px 7px;font:500 12px/1 var(--mono);background:#fff;white-space:nowrap}
+  .cap i{width:12px;height:12px;border-radius:3px;background:var(--cw);border:1px solid var(--cv);display:inline-block;flex:none}
+  .cap.trig{--cv:var(--trig);--cw:var(--trig-w)} .cap.data{--cv:var(--data);--cw:var(--data-w)} .cap.logic{--cv:var(--logic);--cw:var(--logic-w)} .cap.art{--cv:var(--art);--cw:var(--art-w)} .cap.fn{--cv:var(--fn);--cw:var(--fn-w)}
+  .cap.off{border-color:var(--line);color:var(--faint)} .cap.off i{border-color:var(--line);background:var(--tile)}
+  .cap.on,.cap.sel{background:var(--cw);font-weight:600;box-shadow:inset 0 0 0 1px var(--cv)}
+  .lib .entry{display:flex;flex-direction:column;gap:5px}
+  .lib .entry small{font-size:12px;line-height:1.45;color:var(--mute);padding-left:6px}
+  .lib .entry.on small{color:var(--ink)}
+  .lib .stack{display:flex;flex-direction:column;gap:11px}
+  .kv{display:grid;grid-template-columns:96px 1fr;gap:9px 14px;font-size:14px;line-height:1.5}
+  .kv .k{font:500 12px/1.9 var(--mono);color:var(--mute);letter-spacing:.02em}
+  .kv .v{font-size:14px;line-height:1.5}
+  .kv .v b{font-weight:600}
+  .kv .v .caps{gap:6px}
+  .kv .v .cap{padding:4px 10px 4px 6px;font-size:12px}
+  .code{background:#1F1F1D;color:#E8E8E4;border-radius:5px;padding:16px 18px;font:400 12.5px/1.8 var(--mono);white-space:pre;overflow:auto;letter-spacing:0}
+  .code .kw{color:#9CC7BF} .code .rec{color:#F1B8DC} .code .dim{color:#8A8A85}
+  .conn{display:block;width:100%;height:64px}
+  .conn path{fill:none;stroke-width:1.5}
+  .conn.bad path{stroke:var(--bad);opacity:.85}
+  .conn.good path{stroke:var(--fn);stroke-width:2}
+  .conn text{font:500 11px var(--mono);fill:var(--mute);letter-spacing:.04em}
+  .table{width:100%;border-collapse:collapse;font-size:13px}
+  .table th{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);text-align:left;padding:0 10px 10px 0;border-bottom:1px solid var(--line)}
+  .table td{padding:9px 10px 9px 0;border-bottom:1px solid var(--row);vertical-align:top}
+  .table tr.hit td{background:var(--fn-w);font-weight:600}
+  .table tr.hit td:first-child{box-shadow:inset 3px 0 0 var(--fn);padding-left:10px}
+  .table td.m{font-family:var(--mono);font-size:12px}
+  .summary{margin-top:30px;border:1.5px dashed var(--line);border-radius:6px;padding:18px 20px;background:var(--surface)}
+  .summary.good{border-color:var(--fn)}
+  .summary .h{font:600 14px/1.2 var(--serif);letter-spacing:.02em;text-transform:uppercase;margin-bottom:10px;color:var(--mute)}
+  .summary p{margin:0;font-size:14px;line-height:1.55}
+  .summary p+p{margin-top:6px}
+  .summary p.big{font-size:16px;font-weight:600;margin-top:12px}
+  .lv-process{--lv:var(--process);--lw:var(--process-w)}
+  .lv-piping{--lv:var(--piping);--lw:var(--piping-w)}
+  .lv-fn{--lv:var(--fn);--lw:var(--fn-w)}
+  .lv-logic{--lv:var(--logic);--lw:var(--logic-w)}
+  .lv-art{--lv:var(--art);--lw:var(--art-w)}
+  .lv-data{--lv:var(--data);--lw:var(--data-w)}
+  .lv-trig{--lv:var(--trig);--lw:var(--trig-w)}
+  .lv-bad{--lv:var(--bad);--lw:var(--bad-w)}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <h1>Draper. How it ran. How it will run.</h1>
+  <p>Both sides do the same job. You do something in the app, a request goes to a model, a result comes back and lands somewhere. The difference is <b>what decides</b> what goes into that request and where the result goes. On the left, code decides, and it decides differently for every feature. On the right, a record you edit decides, and one piece of code runs it.</p>
+</header>
+
+<div class="wrap">
+
+<section class="side">
+  <h2>Before. Built one feature at a time.</h2>
+  <p class="sub">Five kinds of prompt thing. Three ways of assembling a call. A separate piece of code for every place a result can land. Which one you got depended on which feature you were using.</p>
+
+  <div class="row">
+    <div class="rowlabel"><span class="n bad">1</span>What you do in the app</div>
+    <div class="cards c5">
+      <div class="piece lv-process"><div class="top">Draper app</div><div class="body"><div class="title">Type a message</div><p class="q">Plain chat with Mr. Draper.</p></div></div>
+      <div class="piece lv-process"><div class="top">Draper app</div><div class="body"><div class="title">Type a /command</div><p class="q">/customer-research, /know-search, and so on.</p></div></div>
+      <div class="piece lv-process"><div class="top">Draper app</div><div class="body"><div class="title">Click a button</div><p class="q">Approve, deny, generate, upload.</p></div></div>
+      <div class="piece lv-process"><div class="top">Draper app</div><div class="body"><div class="title">Upload or save</div><p class="q">An image, a doc, a reference from the plug-in.</p></div></div>
+      <div class="piece lv-process"><div class="top">Canvas</div><div class="body"><div class="title">Prompt the canvas</div><p class="q">Image generation turns.</p></div></div>
+    </div>
+  </div>
+
+  <svg class="conn bad" viewBox="0 0 1000 64" preserveAspectRatio="none">
+    <path d="M100,0 C100,34 100,34 100,64"/><path d="M100,0 C200,34 280,34 300,64"/><path d="M300,0 C300,34 300,34 300,64"/><path d="M300,0 C500,22 850,34 900,64"/><path d="M500,0 C300,22 120,34 100,64"/><path d="M500,0 C520,34 500,34 500,64"/><path d="M500,0 C700,22 700,34 700,64"/><path d="M700,0 C700,34 700,34 700,64"/><path d="M700,0 C500,22 320,34 300,64"/><path d="M900,0 C900,34 900,34 900,64"/><path d="M900,0 C700,22 520,34 500,64"/>
+  </svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n bad">2</span>Five kinds of prompt thing. Each wired its own way.</div>
+    <div class="cards c5">
+      <div class="piece lv-bad"><div class="top">In code</div><div class="body"><div class="title">Native command</div><p>Hard-coded in the app. To change it you change code and deploy.</p></div></div>
+      <div class="piece lv-bad"><div class="top">In a table</div><div class="body"><div class="title">/command</div><p>A row in a table. Each row also carries a "response mode" that decides which code path will run it.</p></div></div>
+      <div class="piece lv-bad"><div class="top">In code and a table</div><div class="body"><div class="title">Mr. Draper rules</div><p>Identity, voice, grounding, output rules. Attached to every chat call whether or not that call needs them.</p></div></div>
+      <div class="piece lv-bad"><div class="top">In a table, called by code</div><div class="body"><div class="title">Instruction blocks</div><p>Text pulled in by slug when code decides it should be. The same block is pasted into many prompts.</p></div></div>
+      <div class="piece lv-bad"><div class="top">In code</div><div class="body"><div class="title">Sub-agents</div><p>A separate mini-agent per command type, each with its own plumbing.</p></div></div>
+    </div>
+  </div>
+
+  <svg class="conn bad" viewBox="0 0 1000 64" preserveAspectRatio="none">
+    <path d="M100,0 C120,34 150,34 170,64"/><path d="M100,0 C300,22 480,34 500,64"/><path d="M300,0 C320,34 480,34 500,64"/><path d="M300,0 C500,22 800,34 830,64"/><path d="M500,0 C400,22 200,34 170,64"/><path d="M500,0 C500,34 500,34 500,64"/><path d="M500,0 C700,22 800,34 830,64"/><path d="M700,0 C500,22 200,34 170,64"/><path d="M700,0 C650,34 520,34 500,64"/><path d="M900,0 C750,22 520,34 500,64"/><path d="M900,0 C880,34 850,34 830,64"/>
+  </svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n bad">3</span>How the call gets assembled. It depends on which kind it was.</div>
+    <div class="cards c3">
+      <div class="piece lv-piping"><div class="top">Code path A</div><div class="body"><div class="title">Main chat loop</div>
+        <div class="panel"><div class="pn">Reads</div><p>The Mr. Draper rules, plus whatever is in the context tray, plus extra rules a "turn policy" picks for this kind of turn, plus about thirty tools it may call.</p></div>
+        <p class="warn">Nobody can say exactly what entered the context.</p></div></div>
+      <div class="piece lv-piping"><div class="top">Code path B</div><div class="body"><div class="title">Sub-agent</div>
+        <div class="panel"><div class="pn">Reads</div><p>This command's prompt text, fetched by slug, plus template variables that code fills in.</p></div>
+        <p class="warn">The rules that repeat are pasted into every prompt separately.</p></div></div>
+      <div class="piece lv-piping"><div class="top">Code path C</div><div class="body"><div class="title">Direct writer</div>
+        <div class="panel"><div class="pn">Reads</div><p>Prompt text, plus an input list declared in a code file for that document type.</p></div>
+        <p class="warn">The input list lives in code, not where you can edit it.</p></div></div>
+    </div>
+  </div>
+
+  <svg class="conn bad" viewBox="0 0 1000 64" preserveAspectRatio="none"><path d="M170,0 L170,64"/><path d="M500,0 L500,64"/><path d="M830,0 L830,64"/></svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n bad">4</span>The model</div>
+    <div class="cards c3">
+      <div class="piece lv-piping"><div class="top">Call site 1</div><div class="body"><div class="title" style="margin:0">Model call</div></div></div>
+      <div class="piece lv-piping"><div class="top">Call site 2</div><div class="body"><div class="title" style="margin:0">Model call</div></div></div>
+      <div class="piece lv-piping"><div class="top">Call site 3</div><div class="body"><div class="title" style="margin:0">Model call</div></div></div>
+    </div>
+    <p class="warn" style="margin-top:12px">Three places in code that build a request, three different ways.</p>
+  </div>
+
+  <svg class="conn bad" viewBox="0 0 1000 64" preserveAspectRatio="none">
+    <path d="M170,0 C170,34 100,34 90,64"/><path d="M170,0 C300,22 280,34 290,64"/><path d="M500,0 C400,22 300,34 290,64"/><path d="M500,0 C520,34 500,34 500,64"/><path d="M500,0 C700,22 700,34 700,64"/><path d="M830,0 C700,22 520,34 500,64"/><path d="M830,0 C880,34 900,34 900,64"/><path d="M830,0 C700,22 300,34 290,64"/>
+  </svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n bad">5</span>Where the result goes. Each feature has its own code for it.</div>
+    <div class="cards c5">
+      <div class="piece lv-art"><div class="top">Chat</div><div class="body"><div class="title">A message</div><p>Plain text in the thread.</p></div></div>
+      <div class="piece lv-art"><div class="top">Chat</div><div class="body"><div class="title">An artifact card</div><p>A doc card with Edit, Approve, Deny. On approve, a second handler copies it into the Atlas. One doc, two copies.</p></div></div>
+      <div class="piece lv-art"><div class="top">Context tray</div><div class="body"><div class="title">Into the tray</div><p>Search results you confirm are added to a tray module. Its own code per module.</p></div></div>
+      <div class="piece lv-art"><div class="top">Canvas</div><div class="body"><div class="title">A generation</div><p>Its own table, its own save flow.</p></div></div>
+      <div class="piece lv-art"><div class="top">Libraries</div><div class="body"><div class="title">A record</div><p>Knowledge entry, reference row, media tag. Each with its own pipeline.</p></div></div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="h">Why it hurt</div>
+    <p>To change what a call did, you had to find which of the five kinds it was, which path ran it, and where its text and inputs lived. Then change code.</p>
+    <p>Rules that should be shared, like the research standard, the voice, the evidence rules, were pasted into many prompts. A fix in one did not reach the others.</p>
+    <p>Nothing recorded exactly what entered a call or where the result went. Bad output had no single place to look.</p>
+    <p class="big">Behavior lived in code. Five flavors, assembled three ways, landing five ways.</p>
+  </div>
+</section>
+
+<section class="side">
+  <h2>After. One record, one harness.</h2>
+  <p class="sub">Every model call is a <b>Function</b>: a record you and Erik edit in the admin. A trigger finds it in the registry. The <b>harness</b>, which is code, assembles it from the libraries, sends it, and routes the result to the output the record selected.</p>
+
+  <div class="row">
+    <div class="rowlabel"><span class="n good">1</span>What you do in the app. Same as before.</div>
+    <div class="cards c5">
+      <div class="piece lv-process"><div class="top">Draper app</div><div class="body"><div class="title" style="margin:0">Type a message</div></div></div>
+      <div class="piece lv-process"><div class="top">Draper app</div><div class="body"><div class="title" style="margin:0">Type a /command</div></div></div>
+      <div class="piece lv-process"><div class="top">Draper app</div><div class="body"><div class="title" style="margin:0">Click a button</div></div></div>
+      <div class="piece lv-process"><div class="top">Draper app</div><div class="body"><div class="title" style="margin:0">Upload or save</div></div></div>
+      <div class="piece lv-process"><div class="top">Canvas</div><div class="body"><div class="title" style="margin:0">Prompt the canvas</div></div></div>
+    </div>
+  </div>
+
+  <svg class="conn good" viewBox="0 0 1000 64" preserveAspectRatio="none"><path d="M100,0 L100,64"/><path d="M300,0 L300,64"/><path d="M500,0 L500,64"/><path d="M700,0 L700,64"/><path d="M900,0 L900,64"/></svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n good">2</span>Trigger. The app only says what happened.</div>
+    <div class="piece lv-trig"><div class="top">Event</div><div class="body">
+      <div class="caps">
+        <span class="cap trig"><i></i>/command typed</span>
+        <span class="cap trig"><i></i>button clicked</span>
+        <span class="cap trig"><i></i>row landed · an upload, a save, a plug-in capture</span>
+        <span class="cap trig"><i></i>data changed · approved, denied, status flipped</span>
+        <span class="cap trig"><i></i>words in a message · a phrase the record names</span>
+        <span class="cap trig"><i></i>schedule</span>
+      </div>
+    </div></div>
+  </div>
+
+  <svg class="conn good" viewBox="0 0 1000 64" preserveAspectRatio="none"><path d="M500,0 L500,64"/><text x="514" y="37">search the registry by trigger</text></svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n good">3</span>Functions registry. The trigger finds its Function here.</div>
+    <div class="piece lv-fn"><div class="top">Admin · registry</div><div class="body">
+      <div class="title"><span class="t">⚙</span>All the Functions, one row each</div>
+      <div class="panel"><div class="pn">functions · matched on trigger</div>
+        <table class="table">
+          <tr><th>Name</th><th>Trigger</th><th>Inputs</th><th>Logic</th><th>Output</th></tr>
+          <tr><td>Customer Research</td><td class="m">/customer-research</td><td>intake · planes</td><td>Research Standard</td><td>Strategy doc</td></tr>
+          <tr class="hit"><td>Competitor Research</td><td class="m">/competitor-research</td><td>intake · planes · customers</td><td>Selection Logic · Research Standard</td><td>Strategy doc</td></tr>
+          <tr><td>Competitors</td><td class="m">/competitors</td><td>intake · customers · research</td><td>Gap Read · Research Standard</td><td>Strategy doc</td></tr>
+          <tr><td>Reference Read</td><td class="m">row landed · reference</td><td>image · commentary</td><td>Five Layer Logic</td><td>Record fields</td></tr>
+          <tr><td>Knowledge Search</td><td class="m">/know-search</td><td>knowledge entries</td><td>none</td><td>Chat message</td></tr>
+          <tr><td style="color:var(--mute)">and so on</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </div>
+    </div></div>
+  </div>
+
+  <svg class="conn good" viewBox="0 0 1000 64" preserveAspectRatio="none"><path d="M500,0 L500,64"/><text x="514" y="37">hand the matched row to the harness</text></svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n good">4</span>The harness. Code, written once. It runs any row the same way.</div>
+    <div class="piece lv-piping"><div class="top">Code · GitHub</div><div class="body">
+      <div class="title"><span class="t">▶</span>The Draper harness</div>
+      <div class="desc">Two parts. Assemble and run. Then route the result. It never knows which Function or which output. It reads both from the record and the libraries.</div>
+      <div class="code"><span class="dim">part one · assemble and run</span>
+<span class="kw">given</span>   the matched <span class="rec">Function</span>
+<span class="kw">take</span>    its <span class="rec">prompt</span>
+<span class="kw">attach</span>  the <span class="rec">logic</span> the prompt names, from the Logic library
+<span class="kw">attach</span>  the <span class="rec">inputs</span> the prompt names, from the Input library
+<span class="kw">run</span>     the model call
+
+<span class="dim">part two · route the result</span>
+<span class="kw">look up</span> the <span class="rec">output</span> the record selected, in the Output library
+<span class="kw">check</span>   the result matches that entry's format
+<span class="kw">put</span>     it where that entry says it lands
+<span class="kw">render</span>  it there
+<span class="kw">log</span>     the run</div>
+    </div></div>
+  </div>
+
+  <svg class="conn good" viewBox="0 0 1000 64" preserveAspectRatio="none"><path d="M500,0 L500,64"/><text x="514" y="37">assemble</text></svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n good">5</span>The Function, assembled. The prompt leads. Its slots pull from the three libraries.</div>
+    <div id="assembly" style="position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:start">
+      <svg id="wires" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible"></svg>
+
+      <div class="piece lv-fn"><div class="top">The matched row · full</div><div class="body">
+        <div class="title"><span class="t">⚙</span>Competitor Research</div>
+        <div class="desc">One form. Every line editable.</div>
+        <div class="panel"><div class="pn">The record</div>
+          <div class="kv">
+            <div class="k">trigger</div><div class="v"><span class="cap trig"><i></i>/competitor-research typed</span></div>
+            <div class="k">prompt</div><div class="v">"You create the competitor research for this brand. Read the <b>intake</b> first for the business and the category, then <b>Audience Planes</b> and <b>Customers</b> for who this is for and what they need. Build the set per <b>Competitor Selection Logic</b>. For each competitor return What it is, Product, Offering, Experience. Write per <b>Research Standard</b>. 1,500 to 1,850 words."</div>
+            <div class="k">inputs</div><div class="v"><div class="caps"><span class="cap data sel" data-to="in-intake"><i></i>intake</span><span class="cap data sel" data-to="in-planes"><i></i>Audience Planes</span><span class="cap data sel" data-to="in-customers"><i></i>Customers</span></div></div>
+            <div class="k">logic</div><div class="v"><div class="caps"><span class="cap logic sel" data-to="lg-selection"><i></i>Competitor Selection Logic</span><span class="cap logic sel" data-to="lg-research"><i></i>Research Standard</span></div></div>
+            <div class="k">model</div><div class="v">gpt-5.5</div>
+            <div class="k">output</div><div class="v"><span class="cap art sel" data-to="out-doc"><i></i>Strategy doc · Competitors › research</span></div>
+            <div class="k">host</div><div class="v">Draper</div>
+          </div>
+        </div>
+      </div></div>
+
+      <div class="lib" style="display:grid;gap:14px">
+        <div class="piece lv-data"><div class="top">Admin · library</div><div class="body"><div class="title">Input library</div>
+          <div class="panel"><div class="pn">What a Function may read</div>
+            <div class="caps">
+              <span class="cap data on" id="in-intake"><i></i>source material · intake</span>
+              <span class="cap data off"><i></i>source material · first read</span>
+              <span class="cap data off"><i></i>source material · call transcript</span>
+              <span class="cap data on" id="in-planes"><i></i>Atlas · Audience Planes</span>
+              <span class="cap data on" id="in-customers"><i></i>Atlas · Customers</span>
+              <span class="cap data off"><i></i>Atlas · Competitors</span>
+              <span class="cap data off"><i></i>Atlas · any approved doc</span>
+              <span class="cap data off"><i></i>knowledge entries</span>
+              <span class="cap data off"><i></i>media</span>
+              <span class="cap data off"><i></i>references</span>
+              <span class="cap data off"><i></i>tray modules</span>
+            </div>
+          </div>
+        </div></div>
+
+        <div class="piece lv-logic"><div class="top">Admin · library</div><div class="body"><div class="title">Logic library</div>
+          <div class="panel"><div class="pn">Shared thinking, written once</div>
+            <div class="caps">
+              <span class="cap logic on" id="lg-selection"><i></i>Competitor Selection Logic</span>
+              <span class="cap logic on" id="lg-research"><i></i>Research Standard</span>
+              <span class="cap logic off"><i></i>Needs and Wants Gap Read</span>
+              <span class="cap logic off"><i></i>Foundational Doc Sequence</span>
+              <span class="cap logic off"><i></i>Draper Voice</span>
+              <span class="cap logic off"><i></i>Grounding Rules</span>
+              <span class="cap logic off"><i></i>Five Layer Logic</span>
+              <span class="cap logic off"><i></i>Audience Translation Rules</span>
+              <span class="cap logic off"><i></i>and so on</span>
+            </div>
+          </div>
+        </div></div>
+
+        <div class="piece lv-art"><div class="top">Admin · library</div><div class="body"><div class="title">Output library</div>
+          <div class="panel"><div class="pn">Each entry is a format and a place it lands</div>
+            <div class="stack">
+              <div class="entry"><span class="cap art off"><i></i>Chat message</span><small>Format: prose. Lands: the thread.</small></div>
+              <div class="entry on"><span class="cap art on" id="out-doc"><i></i>Strategy doc</span><small>Format: markdown with named sections. Lands: a draft row in the Atlas, shown as a card in the thread with Edit, Approve, Deny.</small></div>
+              <div class="entry"><span class="cap art off"><i></i>Record fields</span><small>Format: named fields. Lands: on the row the Function ran for.</small></div>
+              <div class="entry"><span class="cap art off"><i></i>Generation or file</span><small>Format: image or html. Lands: canvas or file storage.</small></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <svg class="conn good" viewBox="0 0 1000 64" preserveAspectRatio="none"><path d="M500,0 L500,64"/><text x="514" y="37">becomes the request</text></svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n good">6</span>The model call. The assembled Function, as it goes over the wire.</div>
+    <div class="piece lv-piping"><div class="top">Code · one call site</div><div class="body">
+      <div class="title"><span class="t">▶</span>That form, as code</div>
+      <div class="code">model    <span class="rec">gpt-5.5</span>
+prompt   <span class="rec">the prompt</span>, verbatim
+logic    <span class="rec">Competitor Selection Logic</span> · body
+         <span class="rec">Research Standard</span> · body
+inputs   <span class="rec">intake</span> · four transcripts
+         <span class="rec">Audience Planes</span> · approved doc
+         <span class="rec">Customers</span> · approved doc
+return   per the <span class="rec">Strategy doc</span> entry · markdown, named sections</div>
+    </div></div>
+  </div>
+
+  <svg class="conn good" viewBox="0 0 1000 64" preserveAspectRatio="none"><path d="M500,0 L500,24 L125,24 L125,64"/><path d="M500,0 L500,24 L375,24 L375,64"/><path d="M500,0 L500,24 L625,24 L625,64"/><path d="M500,0 L500,24 L875,24 L875,64"/></svg>
+
+  <div class="row" style="margin-top:0">
+    <div class="rowlabel"><span class="n good">7</span>Where the result lands. The output entry says where. Part two of the harness puts it there.</div>
+    <div class="cards c4">
+      <div class="piece lv-art"><div class="top">Chat</div><div class="body"><div class="title">Chat message</div><p>Prose in the thread.</p></div></div>
+      <div class="piece lv-art" style="box-shadow:inset 0 0 0 1px var(--art)"><div class="top">Chat, then Atlas</div><div class="body"><div class="title">Strategy doc</div><p>A draft row in the Atlas, shown as a card in the thread with Edit, Approve, Deny. Approve is a plain code step, below. It flips the row to approved and the doc shows on its Atlas page.</p></div></div>
+      <div class="piece lv-art"><div class="top">Records</div><div class="body"><div class="title">Record fields</div><p>Named fields written onto the row the Function ran for.</p></div></div>
+      <div class="piece lv-art"><div class="top">Canvas or files</div><div class="body"><div class="title">Generation or file</div><p>Image or html, into the canvas or storage.</p></div></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="rowlabel"><span class="n good">8</span>Outside the harness. Plain code, one job each.</div>
+    <p class="rownote">No model, no judgment, nothing to attach. A click or an event, then one write. These stay as small custom code. They are not Functions.</p>
+    <div class="cards c5">
+      <div class="piece lv-piping"><div class="top">Code</div><div class="body"><div class="title">Approve, Deny, Edit</div><p>On the doc card. Approve flips the row to approved and bumps its version. Deny drops the draft. Edit opens it. One field change. Approve is also what the next Function's trigger can listen for.</p></div></div>
+      <div class="piece lv-piping"><div class="top">Code</div><div class="body"><div class="title">Tray add</div><p>You confirm items a search showed you. They are added to that tray module. A list of ids into a table.</p></div></div>
+      <div class="piece lv-piping"><div class="top">Code</div><div class="body"><div class="title">Save, upload</div><p>An image, a doc, a plug-in capture becomes a row plus a stored file. That row landing can trigger a Function, for example Reference Read. The save itself is just storage.</p></div></div>
+      <div class="piece lv-piping"><div class="top">Code</div><div class="body"><div class="title">Syncs from outside</div><p>Read.ai transcript to a Notion record. PandaDoc signature and Mercury wire to status fields. Notion status to app stage. Field for field copies between tools.</p></div></div>
+      <div class="piece lv-piping"><div class="top">Code</div><div class="body"><div class="title">Export, download</div><p>Tray download, Atlas folder export, file handoff. Package what exists and hand it over.</p></div></div>
+    </div>
+  </div>
+
+  <div class="summary good">
+    <div class="h">Run log</div>
+    <p>Every run records which Function ran, exactly what it read, which logic it carried, and what it wrote. Bad output: open the run and see everything.</p>
+    <p class="big">Behavior lives in records you edit. One harness assembles, runs, and routes them.</p>
+  </div>
+</section>
+
+<div class="foot">
+  <b>Read across.</b> Each row on the left has the same row on the right. What you do, what fires, what goes into the call, the model, where it lands. On the left each is answered per feature, in code. On the right each is a field on one form, read by one harness.
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  function draw(){
+    var box=document.getElementById('assembly'), svg=document.getElementById('wires'); if(!box||!svg) return;
+    var b=box.getBoundingClientRect(); svg.setAttribute('viewBox','0 0 '+b.width+' '+b.height); svg.innerHTML='';
+    var col={data:'#D83A9A',logic:'#6D35E9',art:'#1764C0'};
+    box.querySelectorAll('.cap.sel[data-to]').forEach(function(src){
+      var dst=document.getElementById(src.getAttribute('data-to')); if(!dst) return;
+      var s=src.getBoundingClientRect(), d=dst.getBoundingClientRect();
+      var x1=s.right-b.left, y1=s.top+s.height/2-b.top, x2=d.left-b.left, y2=d.top+d.height/2-b.top;
+      var mx=(x1+x2)/2;
+      var c=src.classList.contains('logic')?col.logic:src.classList.contains('art')?col.art:col.data;
+      var p=document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('d','M'+x1+','+y1+' C'+mx+','+y1+' '+mx+','+y2+' '+x2+','+y2);
+      p.setAttribute('fill','none'); p.setAttribute('stroke',c); p.setAttribute('stroke-width','1.6'); p.setAttribute('opacity','.85');
+      svg.appendChild(p);
+      var dot=document.createElementNS('http://www.w3.org/2000/svg','circle'); dot.setAttribute('cx',x2); dot.setAttribute('cy',y2); dot.setAttribute('r','3'); dot.setAttribute('fill',c); svg.appendChild(dot);
+    });
+  }
+  window.addEventListener('load',draw); window.addEventListener('resize',draw); setTimeout(draw,250); setTimeout(draw,1200);
+})();
+</script>
+</body>
+</html>

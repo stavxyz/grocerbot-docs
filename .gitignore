@@ -1,0 +1,8 @@
+.DS_Store
+**/.DS_Store
+.playwright-mcp/
+.env.export
+**/.env.export
+
+# Review packages: original camera files exceed GitHub limits
+03 - Example/Reviews/**/visual-overview-original.mov

@@ -64,7 +64,7 @@ Not documentation drift. Things the code does that look wrong or unfinished, sur
 
 ## Issues filed
 
-On 2026-09-07, with Sam's authorisation, seven of the findings above and from the Part 1 and Part 2 runs were filed on the repository as issues #263 to #269. The list and the reasons some were not filed are in each part's Delivery Report under `04 - Build/`.
+On 2026-09-07, with Sam's authorisation, findings verified end to end in the code were filed on the repository as issues #263 to #274, with comments on #268 as later parts found more drift. The list and the reasons some were not filed are in each part's Delivery Report under `04 - Build/`.
 
 ## Full inventory
 

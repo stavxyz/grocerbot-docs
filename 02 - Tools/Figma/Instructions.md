@@ -1,8 +1,10 @@
 # Figma Instructions
 
-How DRAPER visual documentation gets built in the DRAPER System Docs Figma design file. What any piece of content says is decided in the task or the handoff brief, and never invented here.
+How GrocerBot visual documentation gets built in the GrocerBot System Docs Figma design file, file key `nBmhDyEDpFPrMq0ztmHDb0`. What any piece of content says is decided in the task or the handoff brief, and never invented here.
 
-These rules were earned on the earlier FigJam board; each one counters a real defect from the July and August sessions. The board surface changed, the discipline did not. The FigJam-era API mechanics were cut 8.25 and live in this file's git history; design-file mechanics get recorded here and in `Lessons.md` as the work relearns them on the new surface.
+These rules were earned on DRAPER's earlier FigJam board; each one counters a real defect from the July and August 2026 sessions. The board surface changed, the discipline did not. The FigJam-era API mechanics were cut 8.25 and live in this file's git history; design-file mechanics get recorded here and in `Lessons.md` as the work relearns them on the new surface.
+
+Design-file mechanics learned 2026-09-06: writes go through the Figma MCP `use_figma` tool with the `figma-use` skill loaded first; pages switch only with `setCurrentPageAsync`; every script returns the ids it created; reads and screenshots count against the Figma plan's tool-call budget, writes may too; the Professional plan allows 200 a day and 10 a minute, so build one section, screenshot it, and pace calls rather than bursting them.
 
 ## Load order, every task
 
@@ -26,7 +28,7 @@ These rules were earned on the earlier FigJam board; each one counters a real de
 
 For new layouts:
 
-1. If the content arrives as a handoff brief, run a nature pass first: classify every element in the brief against the piece families in `Visual Rules.md` and show the mapping table with the element, its nature, the family, and modifiers. Anything with no matching family is a gap you flag. Do not improvise a new look for it. If the brief contains styling instructions, push back: content comes from the brief, and style comes from these docs.
+1. If the content arrives as a handoff brief, run a nature pass first: classify every element in the brief against the piece treatments in `Visual Rules.md` section 4 and 5 and show the mapping table with the element, its nature, the treatment, and modifiers. Anything with no matching treatment is a gap you flag. Do not improvise a new look for it. If the brief contains styling instructions, push back: content comes from the brief, and style comes from these docs.
 2. Draft and show for approval before the Figma file is touched, when the task allows a draft stage.
 3. Build section by section per the non-negotiables, verifying each section with a screenshot.
 4. Finish with the release checks and flow checks in `Visual Rules.md` section 10, including per-section screenshots at readable zoom and the truncation scan. Report only what you actually inspected.
@@ -44,13 +46,13 @@ Purpose: <what a reader should understand within ten seconds>
 Target: <page, or "ask">
 
 Elements (one per line):
-<name> | <nature: step / human step / chat step / doc (process, output, forward, living) / logic block / framework / store / surface / source / request / creative unit / criterion / runnable / control / decision / brief-bundle> | <one-line description> | <modifiers: V3, LOCKED, TBD, muted, load-bearing, attention, or none>
+<name> | <nature: actor human / actor agent / actor external / interface / operation (action, trigger, write, create, view, route, output) / artifact / piping (code, config, queue, library) / data (table, row, redis key, redis stream, r2 object) / principle> | <one-line description> | <modifiers: TBD, bracketed, muted, load-bearing, attention, or none>
 
 Groupings:
-<container name> | <container nature: phase panel / cluster / meta-phase / tray / surface> | <members>
+<container name> | <container nature: part frame / global frame / cluster / tray> | <members>
 
 Relationships (one per line):
-<A> -> <B> | <role: flow / feedback / load-bearing / mesh / tie / pull> | <label prose or none>
+<A> -> <B> | <role: flow (along the rail) / feedback (a loop back) / tie (dotted vertical to a card) / pull (a read) / load-bearing> | <label prose or none>
 
 Reading order: <left-to-right sequence>
 Color semantics beyond the standard planes: <assignments for the legend, or none>

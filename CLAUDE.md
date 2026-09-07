@@ -1,6 +1,6 @@
 # Visual Documentation
 
-Before any substantive task in this repository, read `Function - Visual Documentation.md` and the three Logics it calls: `Logic - Protocol.md`, the hard rules; `Logic - Reasoning.md`, the thinking, whose first rule is that no single source, draft, board, or instruction is ever the anchor; and `Logic - Harness.md`, the standard the work reconciles against. The harness ships as a template; until it is written for the app being documented, no real documentation run can start, and helping write it comes first.
+Before any substantive task in this repository, read `Function - Visual Documentation.md` and the three Logics it calls: `Logic - Protocol.md`, the hard rules; `Logic - Reasoning.md`, the thinking, whose first rule is that no single source, draft, board, or instruction is ever the anchor; and `Logic - Harness.md`, the standard the work reconciles against. The harness was written for GrocerBot on 2026-09-06 from a full read of the code; it is the aim, not proven fact, and it names the SHAs it was read at.
 
 Two rules bind before anything is read:
 

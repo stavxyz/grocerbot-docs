@@ -18,7 +18,19 @@ State the resolution back in one line and continue. Only stop and ask if it is g
 
 **The current naming.** Use whatever names the system's owner currently uses for its parts. As naming decisions land, record them here and in the lexicon, so a spoken request resolves the same way every run. Take the name as authoritative over any number whenever the two conflict; the name is what identifies the work.
 
-**Resolve the part to its sources.** A part of the system is a grouping, and the underlying material sits in `01 - Sources`. Establish which documents in there belong to the requested part, state that list in one line, and document that whole set. Never assume one file is the whole part.
+GrocerBot's parts, as agreed 2026-09-06 and recorded in `System Lexicon.md`:
+
+1. Vendor portal monitoring
+2. Email ingestion
+3. Notification delivery
+4. Document canonicalization
+5. POS sync
+6. Inventory ledger
+7. Reliability and operations
+
+So *"let's do the poll"* or *"BEK monitoring"* resolves to **Part 1, Vendor portal monitoring**, and *"the Clover stuff"* resolves to **Part 5, POS sync**. Tenancy and configuration are properties of every part, not a part; a request for them is a request to show them across the parts they touch. The levels are Principles, Process, Data, and Piping.
+
+**Resolve the part to its sources.** A part of the system is a grouping, and the underlying material sits in `01 - Sources`. Establish which documents in there belong to the requested part, state that list in one line, and document that whole set. Never assume one file is the whole part. For GrocerBot the sources are pointers: each brief under `01 - Sources` names a checkout, its branch of record, and the SHA last read. Open the live checkout, and record the SHA you read in the delivery report.
 
 **The target board.** Confirm the Figma file and the page before drawing anything. Get the URL or node id from the task. If the task does not carry one, ask; do not guess from a board name, and do not draw into a board found by searching.
 

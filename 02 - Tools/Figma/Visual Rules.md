@@ -1,359 +1,180 @@
 # Visual Rules
 
-The written version of the visual rules for DRAPER documentation, mirroring the Visual Rules stack in the System Legend on the DRAPER DOCUMENTATION FigJam board. This document and the board are meant to say the same thing; where they disagree, one of them is wrong and the difference gets recorded, not papered over. As of the 8.12 decision session this document is ahead of the board: Buck's 8.12 decisions are recorded here first, and the board changes they require are listed in Board sync at the end.
+The visual standard for GrocerBot's documentation in the GrocerBot System Docs Figma file. Written 2026-09-06 by re-basing DRAPER's rules onto GrocerBot's four levels. Two sources: the live DRAPER legend as read that day, recorded in `Live Legend Read 26.09.06.md`, and DRAPER's 8.12 written standard, now at `03 - Example/Visual Rules (DRAPER 8.12).md`. Where the two disagreed the live file won. Where GrocerBot differs from DRAPER, this document says so and the reason.
 
-Sources: the 8.12 verbatim transcription of the ten Visual Rules sheets (nodes recorded per section), Sal's consolidated rulebook notes received 8.12, the decisions carried from the archived piece documentation standard, and Buck's 8.12 decision session in chat. Rules that exist only in Sal's notes are tagged (Sal). This document replaces the archived piece documentation standard (06.1.6) and the July board-map register (the old 06.1.2 design language, 06.1.3 components, and 06.1.4 palette); those archived files live in the original DRAPER repo, not in this duplicate. Sal's private, Git-ignored local workflow files govern his machine, not this repo.
+This document and the GrocerBot System Legend page are meant to say the same thing. The legend page was built on 2026-09-06 from this document; node ids are in `04 - Build/26.09.06 - Part 1 - Vendor Portal Monitoring/Build Log.md`. Where they disagree one of them is wrong and the difference gets recorded, not papered over.
 
-The ten numbered sections follow the ten board sheets in board order. Modifiers, Board sync, and Open items close the document.
+The levels are **Principles**, **Process**, **Piping**, and **Data**. There is no Functions or Logic level. Artifact is a piece within Process.
 
-## 1. Color Tokens
+## 1. Color tokens
 
-Board frame 1609:1996 (was section 1308:1932). Every color on a documentation sheet comes from this card. Nothing else ships. Rebuilt 8.12 evening from a fill-and-stroke audit of the six live piece sheets; the sheet carries five groups: Base, Level tints, Level colors, Ink & lines, Connection types. The word on this sheet is level, never layer.
+Every colour on a board or sheet comes from the `Colors` variable collection. Nothing is picked by eye. Levels carry three values: the colour, an outline tint at 12 percent for container edges and badge fills, and a fill tint at 4.5 percent. Acts carry two: the colour, which tag outlines take directly, and a fill at 10 percent. A badge fills with its colour's outline-tier value and sets its text in the colour.
 
-Base, shared across every level:
-
-| Token | Use | Hex |
-|---|---|---|
-| White | Sheet canvas; card and capsule bodies | `#FFFFFF` |
-| Interior surface | Strips, input fields, location bars | `#F5F5F2` |
-| Tile | Placeholder and icon tiles | `#F1F1EF` |
-
-Removed 8.12 evening by the audit: General sheet `#FFFDFB` had zero uses anywhere (the sheet canvases are plain white), and the old Interior surface value `#FAFAF8` had one use while the live sheets use `#F5F5F2` twelve times. Both were doc fiction; the de facto values are pinned.
-
-Level tints, one per level. A level's boxes sit on its own tint, never on bare white:
-
-| Level | Hex |
-|---|---|
-| Principles | `#FFFBF6` |
-| Logic | `#FDFCFF` |
-| Functions | `#FBFEFD` |
-| Process | `#FCFCFB` |
-| Artifacts | `#FCFDFF` |
-| Data | `#FFFCFE` |
-
-The level colors, confirmed by Buck 8.12. The Color Tokens sheet carries hexes for the tints only; the level hexes below are pinned from the live piece sheets' own spec lines (each sheet's mono anatomy rule states its outline hex), read from Buck's 8.12 screenshots:
-
-| Layer | Color | Hex |
-|---|---|---|
-| Principles | Orange | `#E96B0C` |
-| Logic | Purple | `#6D35E9` |
-| Functions | Teal | `#2F8278` (Buck 8.12; the word is teal, not green) |
-| Process | Largely black, with nuance: it is the level with multiple pieces and many subparts, so its pieces carry their own internal colors | per piece |
-| Artifacts | Blue | `#1764C0` |
-| Data | Pink | `#D83A9A` |
-
-Ink and lines, pinned 8.12 evening from the audit of what the live sheets actually use (the old `#73726E` caption value and `#E4E4E0` hairline value were doc-only; the sheets had drifted, and the de facto winners were pinned):
+**Core**
 
 | Token | Use | Hex |
-|---|---|---|
-| Ink | Titles, names, body text | `#1A1A18` |
-| Caption gray | Explainers and captions | `#8A8A85` |
-| Annotation gray | Mono annotations and specs | `#9C9C96` |
-| Lines | Hairline dividers 1px; header rules 7px | `#D9D9D5` |
+| --- | --- | --- |
+| Core/Background/White | sheet canvas, card bodies | `#FFFFFF` |
+| Core/Background/Container | tinted panels, tiles | `#FBFBFB` |
+| Core/Text/Headlines | titles, names, Ink | `#1A1A18` |
+| Core/Text/General | body, captions, muted | `#8C8C8B` |
+| Core/Border | hairlines, card edges | `#D9D9D5` |
 
-Connection type colors, pinned 8.12 evening. The value colors the capsule's outline, icon, and text. The interior fill is a paler blend of the same color, never the layer band tint:
+**Levels**
 
-| Type | Hex | Note |
-|---|---|---|
-| Action | `#4C9A57` | Shared with Interface controls; Buck 8.12 evening: this green, because it reads most different from Function teal |
-| Trigger | `#A87716` | |
-| Create | `#1764C0` | Matches the Artifacts level color exactly (Buck 8.12 evening: outline matches the level; only the interior blend is its own) |
-| Output | `#D83A9A` | Matches the Data level color exactly, same ruling |
-| View | `#5F6875` | |
+| Level | Colour | Outline | Fill | Note |
+| --- | --- | --- | --- | --- |
+| Principles | `#E96B0C` | `#FBE9DC` | `#FEF8F3` | carried from DRAPER's Principle sheet; tints computed at 12 and 4.5 percent and not yet a variable |
+| Process | Ink | none | none | Process has no hue; its pieces carry their own colours |
+| Piping | `#6F4E27` | `#EEEAE5` | `#F9F7F5` | doubles as Route |
+| Data | `#D83A9A` | `#FAE7F3` | `#FDF6FA` | |
 
-Piece-internal color, decided by Buck 8.12:
+Retired from DRAPER: Functions teal `#2F8278`, Logic purple `#6D35E9`. Nothing in GrocerBot wears them. The Artifacts blue `#1764C0` survives as the Artifact piece colour within Process and as the Output and Create acts.
 
-- Within a piece, color remains a differentiation axis (Buck 8.9: line type, color, shading, text, shape).
-- Interface controls and the Action connection share one green, `#4C9A57` (Buck 8.12 evening). The live sheets still carry the older `#2B8A57` in places; sweeping them is flow-sweep work.
-- The Agent color under Actor is changing to something that is not green; terracotta `#B0512E` is on the sheet marked proposed, awaiting Buck's eye. The current olive `#557447` on the Actor sheet is stale once ruled.
-- Level chips: white blended 1.5 percent toward the layer color.
-- Dividers and hairlines: `#D9D9D5` (pinned 8.12 evening; `#E4E4E0` was the doc value but the sheets never used it).
-- Light canvas only. No dark mode for explanatory documentation, no transparent label backgrounds (Sal).
-- Color pairs with shape, icon, position, stroke, or text. Color is never the only meaning cue (Sal; consistent with the differentiation-axes rule Buck set 8.9).
+**Pieces within Process**
 
-## 2. FigJam Formatting
+| Piece | Colour | Fill | Note |
+| --- | --- | --- | --- |
+| Actor, human | Ink | none | internal solid ring, external dotted ring |
+| Actor, agent | `#B0512E` | `#F7EEEA` | ruled in the live file |
+| Interface | Ink | none | the mockup carries the platform's own look; the Location mark says where |
+| Artifact | `#1764C0` | `#F5F8FC` | the old Artifacts level colour, kept for the piece |
 
-Board node 1433:7483. What FigJam element types, tools, and settings to use across the system.
+**Acts** (the Operation tag colours)
 
-How we build, no exceptions per piece:
+| Act | Meaning | Colour | Fill |
+| --- | --- | --- | --- |
+| Action | a human acts | `#4C9A57` | `#EFF7EA` |
+| Trigger | an event fires machinery | `#C47D62` | `#F9F0EE` |
+| Write | a record is being written | `#A87716` | `#FCEDCC` |
+| Create | something comes into being | `#1764C0` | `#E8EFF9` |
+| View | read only display | `#8C8C8B` | `#F4F4F3` |
+| Route | a no-run piping hop, dashed | Piping `#6F4E27` | `#F9F7F5` |
+| Output | a run delivers its result | Artifact `#1764C0` | `#F5F8FC` |
 
-1. A box is a shape. Square, radius 2 to 3, stroke 1 to 1.5. Sharp corners, never soft. Fill and stroke edit straight from the toolbar, and every fill comes off the Color Tokens card.
-2. Words are their own layer. Every visible word is a text layer sitting above its box. Nothing is typed into a shape.
-3. A doc lives in a Section. White fill, name cleared so no label shows. The Section organizes the full documentation card and moves its editable children together.
-4. Dividers and connections are lines. Hairline rules between doc sections, and connection lines in flows, so tags and flags can sit on top of them.
-5. Rectangles are furniture only: placeholder bars and tag flags, pieces nobody will ever recolor by hand. Anything a person might restyle is a shape instead.
+DRAPER's eighth act, Voice, the user giving commentary, has no GrocerBot equivalent and is dropped.
 
-Never ships. If one of these appears, it gets fixed before anything else is built:
+**Logotypes.** Product colours, quoted, never system tokens. GrocerBot's set is built when the Locations sheet is built: Discord, Cloudflare, Faktory, Redis, PostgreSQL, GitHub `#101411`, Clover, Ben E. Keith, OpenObserve, DigitalOcean. Each mark is the platform's own vector at its own colour; never redrawn from memory.
 
-1. No sealed or auto-layout Frames. Frames are allowed only as unlocked fixed-size piece shells or scaled editable references. Their children stay selectable, and dragging an edge resizes the shell without scaling or reflowing the contents. Logic and Function cards use exactly this: a fixed-size unlocked outer Frame, prose areas at fixed width and auto height, resizable without ungrouping (Sal, matching the board's Frame allowance).
-2. No resizing groups. Scaling a group stretches everything in it, text included. A group exists for one drag, then it is dissolved.
-3. No flattened imports. Nothing that selects as one merged object: no pasted SVGs, no baked images of text or shapes. Every element stays individually clickable and editable.
-4. No off-token color. Every fill and stroke comes from the Color Tokens card or the level color registry. No new colors invented mid-build.
+## 2. Typography
 
-The test: click any single element on a doc. If you cannot select it, recolor it, or move it alone, the build is wrong.
+The nine local text styles in the file. Build with the styles, never with raw sizes. Reading face Inter, technical face Source Code Pro.
 
-General visual language (Sal):
+| Style | Font | Size | Line | Tracking | Case | Job |
+| --- | --- | --- | --- | --- | --- | --- |
+| Sheet Title | Inter Medium | 32 | 44 | -2% | Title | the name of a documentation sheet, once per sheet |
+| Section Title | Inter Medium | 20 | 26 | -2% | Title | a major group inside a sheet |
+| Piece Shell | Inter Semi Bold | 16 | 20 | -1% | Title | one documented token, rule, or construction |
+| Piece Title | Inter Semi Bold | 14 | 20 | -1% | Title | the name of a piece on its shell on a board, in Ink |
+| Body | Inter Regular | 12 | 16 | 0 | sentence | all prose; muted General grey when secondary |
+| Tag | Inter Semi Bold | 12 | 16 | +8% | UPPER | a short label that classifies rather than names: column headers, the location on a piece, a designation |
+| Name | Source Code Pro Medium | 12 | 16 | +8% | UPPER | anything the system owns as a name: panel names, eyebrows, reference labels |
+| value | Source Code Pro Medium | 12 | 16 | -2% | literal | anything the system owns as a value: capsule labels, field names, types, formats |
+| Eyebrow | Source Code Pro Medium | 10 | 14 | +8% | lower | the caps id line at the top of cards and sections; never for reading text |
 
-- Every visual element has a semantic or structural job. No decorative eyebrow labels, generic left rails, or unnecessary accent stripes. The gray relation group labels in section 5 have a job and stay; the ban is on decoration.
-- Layers stay visually distinct from item labels and attached tags.
-- Avoid repeating the same rounded box treatment for every kind of object. Keep the visual grammar simple, calm, and readable.
-- Use a table when exact repeated-field comparison is the main purpose.
+The DRAPER Typography sheet's prose gives Sheet Title as 40 and Section Title as 24; the bound styles say 32 and 20. The styles win because instances bind to them.
 
-Local SVG mirrors of board work use live text, stable IDs, editable elements, no unnecessary compound paths, and no private font files, @font-face, remote fonts, or external font URLs (Sal).
+## 3. Layout tokens
 
-## 3. Type & Rhythm
+The spacing rhythm of every card, as number variables in the `Layout` collection. Bind paddings, gaps, and radii; never type raw numbers.
 
-Board node 1449:1947. The text sizes and the fixed distances every doc follows; nothing between the steps ships. Technical rules are Source Code Pro (board); the reading face is Inter with its fallback stack (carried from the archived July register and Sal's notes; the ladder sheet itself does not name the family).
+| Token | Value | Where |
+| --- | --- | --- |
+| Card/Radius | 4 | the card shell corner |
+| Card/Body Padding | 24 | shell edge to body blocks |
+| Card/Gap | 12 | between blocks in a card body |
+| Card/Header Padding | 16 | inside the header band, around the tool mark |
+| Panel/Padding | 12 | inside every tinted panel |
+| Panel/Gap | 12 | between rows inside a panel |
+| Panel/Radius | 4 | the panel corner |
 
-The ladder:
+Hairlines are 1 px in Core/Border. Sharp corners at radius 4; nothing rounder except the Record pill and the Actor ring.
 
-| Role | Spec |
-|---|---|
-| Piece name | 48 Semi Bold |
-| Subtitle, one line on what the piece is | 16 Regular `#73726E` |
-| Section title | 28 Semi Bold |
-| Property title | 17 Semi Bold |
-| Explainer | 14 Regular, 150 percent line height, `#73726E` |
-| Mono annotation | 12 Source Code Pro `#9C9C96` |
+## 4. Pieces and their treatments
 
-Helper sentences live at the piece level only: the 16 subtitle under the piece name. Section titles (Anatomy, Properties, Mockup) carry no helper sentence (Buck 8.12, resolving the conflict between the board's 13-size section helper and Sal's no-helper rule; the board's Type & Rhythm sheet still shows the section helper and needs the fix, see Board sync).
+What each kind of thing looks like. The legend page holds one source list per family; boards use instances and never redraw.
 
-Rhythm, fixed distances in px. Eyeballing is how drift starts:
+**Actor.** A ring with a figure inside and a designation tag under it. Type Human or Agent: humans take Ink, the agent takes terracotta with a robot glyph. Organizational boundary: a solid ring for inside GrocerBot, a dotted ring for outside. Designation is one tag with the role, stage, or title, referenced from a set. GrocerBot's designations so far: Operator, Store staff, Buyer for internal humans; Vendor for external; Scheduler, Worker, Browser worker, Notifier, API, Init, Email worker, Core for agents. External systems that act, the BEK portal, Clover, Discord, are External Tool cards, not actors, unless they initiate something, in which case they get an external ring.
 
-| Rule | Value |
-|---|---|
-| Content margin, section edge to content | 64 |
-| Between property blocks | 56 |
-| Hairline divider: above a section title, then down to it | 56 / 32 |
-| Section title to its first block | 28 |
-| Property title to its explainer | 8 |
-| Explainer to mono annotation | 12 |
-| Caption block to spec line | 20 to 22 (8.9 evening record) |
-| Spec line to the next section title | 44 (8.9 evening record) |
-| Sidebar bar: full box, anatomy mini | 2.5 / 1.5 |
-| Corner radius, stroke weight | 2-3 / 1-1.5 |
+**Operation.** A square tag: something the system does, stated as a verb, in the colour of its act. The label is one short active statement in the Name style, such as POLLS NOTIFICATIONS, DIFFS AGAINST SNAPSHOT, PUBLISHES ENVELOPE. Operations ride the Process rail on a line, one per step, and sit in card panels to state what a step does. The seven acts are in section 1. Ruled by Sam 2026-09-06 over Connection and Action; the rail line itself is a line, not a piece.
 
-Captions are sentence case. Section meta text never repeats per piece.
+**Interface.** A card on the rail where a human sees or does something. The Location mark top right says the platform; the body is a concrete abstracted view of the surface: real region names, quiet bars for content, real media only where media is the point. GrocerBot's interfaces are Discord channels and embeds, the two CLIs, the Faktory web UI, the OpenObserve dashboards. A terminal surface is drawn as a dark panel with a prompt line and the command; that convention is new here and marked open.
 
-## 4. Piece Sheets
+**Artifact.** A card on the rail for something a step produced, in Artifact blue: a Discord message with its thread, a PDF, a CSV, a canonical document, a plan report. Fresh one per run. It wears the Location mark of where it lands.
 
-Board node 1462:2136. The fixed documentation shell for defining one reusable DRAPER piece family in full. The live reference is the Principle sheet, embedded on the board at review scale with every source element editable.
+**Record.** A round pill: a registry row by name, wearing the colour and icon of the level it points at. Pink for a Data table, brown for a Piping unit, blue for an Artifact. A pill carries `table › key` or `unit name` and nothing else. In an INPUTS or OUTPUTS panel, records are numbered in read order. The pill and the card are the same row at two zoom levels.
 
-The shell:
+**Card.** The expanded piece. One skeleton, chrome only: a header band with the tool mark top right, an icon and title row, a description container. The body is assembled from Card Blocks and nothing else. GrocerBot's card types:
 
-| Rule | Value |
-|---|---|
-| Sheet content width | 1744 px |
-| Header | 48 px name, 16 px description, one full-width divider (7 px) |
-| Columns | 720 left documentation column, 160 fixed gutter, 680 right Mockup column |
-| Property row | 340 definition, 40 gap, 340 visual representation |
-| Order | Anatomy, then Properties on the left; Mockup on the right (Attributes retired by Buck 8.12) |
+- **Piping card.** A runner, a router, a config unit, a queue, a plugin, a bootstrap. Brown outline, GitHub mark for code, the platform mark for a hosted piece such as Faktory or the Cloudflare Worker. Body: SPEC paragraph, then INPUTS, OUTPUTS, or READS and WRITES panels of records. DRAPER's Draper Harness and Router cards are the shape.
+- **Data card.** A table or a row. Pink outline, the store's mark (PostgreSQL, Redis, R2). A ROW or TABLE tag right of the title states the grain. A TABLE card fills its body with the Table Components block: a header row, one row per field with FIELD, TYPE, THIS ROW, a changed row wearing the dot, and a WRITE or READ tag naming who touches it. A ROW card shows the row's id in the Eyebrow and nothing else there.
+- **External Tool card.** A platform outside GrocerBot: dotted shell, the platform's own mark, no type icon. BEK portal, Clover, Discord, Cloudflare.
+- **Agent card.** A named process when it needs a body, such as the notifier with its routes. DRAPER's Mr Draper card is the shape; GrocerBot may not need it if Piping cards carry the processes. Open.
 
-- Both sides of a property row align at the top; row height follows the taller side (Sal).
-- Sheets end in whitespace. No bottom dividers or closing furniture on a piece sheet (Sal).
-- No eyebrow, status pill, or piece ID above the title (Sal).
-- Use the live family grammar and real examples. Never replace a defined piece with anonymous rectangles or placeholder lines.
+**Tags.** A tag is a small filled fact: no outline, no pointer. Change Tag (a change within a data field), Data Action Tag WRITE and READ, Data Grain Tag ROW and TABLE, Code block (a code excerpt inside a card), Color Tag (designations, ids, states). Outline only for neutral notes on routes.
 
-**Anatomy.** Start with the smallest common core and add one meaningful required layer at each stage, repeating the previous construction as the next stage grows. Plus signs between stages. Every stage gets its own independently editable caption. Real labels where the meaning is known; anonymous gray placeholder lines only for unknown generic texture (Sal, matching the board's Principle anatomy). Anatomy describes how the piece is built, not every possible instance (Sal).
+**Location.** A platform the system runs on: its mark is a logo and a name, no box, stating a fact about the piece it sits on, one mark per piece, top right. Transfer Mark: two marks and one arrow for data crossing a platform boundary. Multi-Tool: marks joined with a plus when one piece runs on more than one platform.
 
-**Properties.** Every meaningful property gets the same treatment: exact semantic label, plain-language explanation, its visual convention shown, separately bounded values or honestly labeled examples, and a technical mono rule describing the visual encoding. Controlled values appear separately, never as comma-separated prose (Sal). Do not invent Type, Kind, Format, or similar properties to fill a section, and a visual mechanism such as a ring, color, or pill is not automatically a semantic property (Sal). The depth bar is the Actor and Interface documentation; no piece goes shallower (Buck 8.9).
+**Icons.** One icon per family, in two shells: Square for Operation tags and card title rows, Rounded for Record pills. Same picture, two shells. One controlled family, never Unicode, never mixed.
 
-Two properties appear on every piece document, always, even when empty: Relationship and Location (Buck 8.12). They get the standard property row with its subtitle; when the piece has none, the row stays and its value area stays empty. Principles carry no Location, so the Principle sheet shows the empty row (Buck 8.12). Format is an ordinary property of Data and of nothing else; an Artifact's equivalent is its type, carried by the artifact-type icon (Buck 8.12). The Attributes section and the Attributes category are retired (Buck 8.12); Relationship and Location get their deep specification under Modifiers, below.
+**Principle.** A sheet on the legend page: name, one plain statement, a divider, then prose that teaches the rule, then a divider and a real example from the code. On boards a principle appears as an orange Record pill on the piece it governs.
 
-**Mockup.** One singular Mockup heading. One family-colored container on the pale family tint, restrained corners, roughly 24 px internal padding (Sal). The family bar is a family cue only, never a decorative rail (Sal). One complete real or working example with actual evidence: real content, real materials, as many as the example requires. Generic placeholders never ship where real content exists.
+## 5. Data conventions new to GrocerBot
 
-**Graphics are drawn for real.** Inline and demo graphics are actual mini charts, flows, or infographics built from editable shapes in the layer color plus neutral. A gray box labeled "graphic" never ships (Buck 8.9 evening, from the Sal comparison; migrated from 06.1.6).
+DRAPER's Data level was tables in Supabase. GrocerBot has three stores. The Data card covers all three with the store's mark; the grain tag and the field table adapt:
 
-**The Process level.** Process is the first level with multiple pieces, and its fidelity is its pieces: Actor, Interface, and Connections each carry the full piece treatment side by side under one level header. Nothing composite gets layered over them; an assembled flow band was built and rejected by Buck 8.9 late. The level adds only its header: name, subtitle, and the heavy rule spanning all its pieces' columns (migrated from 06.1.6). The pieces keep their internal colors as differentiation inside their own anatomy, under the 8.12 color rulings in section 1: the Interface and Action greens stay but read clearly distinct from Function teal, and Agent gets a new color.
+- **Postgres table.** TABLE or ROW card, PostgreSQL mark, field table as above.
+- **Redis key.** A ROW card with the Redis mark. The key pattern is the first row of the field table, typed `string`, with the placeholder segments in braces, such as `unique:vendor.poll:{sha256(args)}`. Further rows carry the value, the TTL in seconds, any companion key, and how the key is released. WRITTEN BY and READ BY name the code paths.
+- **Redis stream.** A TABLE card with the Redis mark. The description names the stream and its consumer group; the field table lists the envelope fields.
+- **R2 object.** A ROW card with the Cloudflare R2 mark. The field table carries the object, the bucket, the cipher, the writer, and the reader.
 
-Current family directions for the sheet bodies:
+Drawn this way on the Part 1 board on 2026-09-06, which moved the key pattern out of the Eyebrow and into the table so the description could say what the key is for. Pending Sam's approval with the rest of the board.
 
-- **Principle**: orange container. Written explanation with graphics plugged in where they help, then a divider and a real applied brand example. The full format lives in the original DRAPER repo's sources (26.08.09 - Principle Documentation Format), not in this duplicate.
-- **Logic**: purple container. Name, description, divider, then ordinary full-width prose written as it would read plugged inline into a calling Function's prompt (Buck 8.9).
-- **Function**: teal container. Prose that gets right into the work, then vertically stacked Triggered By, Inputs, Related Logic, and Outputs reference rows (synthesized 8.9 late; teal per Buck 8.12).
-- **Data**: pink container. Table or file structure with concrete fields and content.
-- **Artifact**: blue container. Type-specific low-fidelity representation such as a document, record, email, message, or application view.
-- **Connection**: the type-based system in section 7.
+## 6. Board composition
 
-## 5. References & Marks
+A board is one frame per part on the VISUAL DOCUMENTATION page. Frames sit inside a section per part group if grouping is needed; Part 1 alone needs no section. A Global frame at the left of a section holds machinery every part shares.
 
-Board node 1468:2158. Compact references, Location encoding, and exact icon and brand-mark use.
+Lanes, top to bottom, per the live DRAPER boards:
 
-**The pill shape** (named by Buck 8.12; previously the canonical pill). One pill shape represents one referenced piece, everywhere a piece is referred to by name: in a flow, in a Function's footer, in a Logic's Related Function.
+1. **Process rail.** A horizontal line. Actor rings where someone acts, Operation tags riding the line for each step, Interface and Artifact cards standing on the rail where a human sees something. Sequence reads left to right at every altitude; a vertical chain of sequential steps is a defect. Branches drop below the rail and rejoin.
+2. **Piping cards.** Under the rail, one card per code unit the steps above run through, aligned under the step it serves.
+3. **Data cards.** At the bottom, one card per table, key, stream, or object the part reads or writes, aligned under the step that touches it.
+4. **Dotted vertical ties** from a rail piece down to its card, and from a Piping card down to the Data it writes. Arrowless. Direct vertical when centres align.
 
-- The construction: a white capsule, stroke 1.3 in the referenced level's color, fully rounded ends, the name in mono (Buck 8.9 evening).
-- The pill begins with a badge: the two-letter level code (FN, LG, DT, AR) in a chip tinted pale toward the level color, or a registered icon. The two-letter convention encodes levels only. Artifact types never get letter codes: a Saved Reference or an Expression is a type of Artifact, and type is carried by the artifact-type icon, such as a media icon for a saved reference and a doc icon for an expression (Buck 8.12; the RF and EX badges currently on the board are stale, see Board sync).
-- The pill outline and text take the referenced level color. The board sheets say family where the older records say layer; both point at the level color registry in section 1.
-- Then the exact name. No description.
-- Location and Format ride inside the pill, never outside it, as a small trailing tag at the right end (Buck 8.10). The tag's contents per Buck 8.12: Location appears as its registered mark icon only, no location text; Format appears as text only, no icon, because formats are many and icons would heavy the pill up. The board's current tags spell the location as text (SUPABASE · JSONB) and are stale, see Board sync.
-- The tag is omitted when the piece has no Location or Format value.
-- Width hugs the content. No equalized fixed widths, no trailing whitespace (Sal).
-- Repeated pill shapes stack vertically, never side by side, with roughly 10 to 12 px vertical gaps (Sal).
-- Relation group labels (the gray eyebrows such as Inputs or Outputs) sit outside the pills, gray, never the level color of what they introduce.
-- These are real system references, not neutral pills or invented tags.
-- A pill shape names a piece at another level. An Action is a Connection inside Process, so a Function's Triggered By never uses a pill: it shows the Action as it appears in the flow, the neutral line with its tag riding it (Buck 8.9 evening).
+Principles appear as pills on the pieces they govern, not as a lane.
 
-**Location rendering on a piece.** Show the contained bar only when Location has a real value: the registered mark plus the exact location name, sitting at the top right, contained within the piece outline (Buck 8.12, confirming the board's Artifact mockups: DRAPER APP, NOTION, WHATSAPP). No floating badge, fake logo, or company-name sticker. If Location is empty, omit the bar entirely and let the piece keep its family-native anatomy. This is the rendering rule for instances and mockups; on documentation sheets the Location property row always appears, per section 4.
+Route only on the orthogonal grid: horizontal and vertical shafts, hard corners, midpoint ports, no crossings, open line of sight. Whitespace marks chapters and branches, never random gaps. Do not spread items evenly across a large canvas; widen only where a dense cluster needs it.
 
-**The icon registries.** Four registered sets live side by side (Buck 8.12), and none replaces another:
+## 7. Working versus final, and release checks
 
-1. Connection type icons: the five in section 7.
-2. Actor iconography: the human figure, the agent variant, the boundary rings.
-3. Location marks: the registered platform marks (Draper App, Notion, WhatsApp, Gmail, GitHub, Supabase, Cloudflare and kin).
-4. Artifact type icons: one icon per artifact type (saved reference, expression doc, kanban card, strategy doc, email, and so on). This set needs building out.
+A working board may show explanations, open decisions, bracketed names, and TBD badges. A final board shows only the approved encoding and the minimum text to identify each real piece. Nothing working becomes final until Sam has approved semantics, visuals, and the checks below, as three separate decisions.
 
-Within a set: reuse the live vector, never substitute Unicode. One controlled Lucide icon family, 24-unit grid, 2 px stroke, round caps and joins; one icon means one stable meaning, and families never mix (Sal).
-
-**Row card eyebrows** (Buck 8.27). On a data ROW card, the gray mono eyebrow above a row's field table carries the row's id and nothing else: sm_i01, as_0101, cm_2011, run_2101. A row's label, kind, section, or any other field value never rides up into the eyebrow; the fields below carry the data. A card showing several rows of one table stacks one full field block per row, each under its own id eyebrow, never a specimen row standing in for the set.
-
-**Brand marks.** Use a verified vector from the shared registry, preserve its proportions, and place it in the approved tile or Location bar. Never redraw a mark from memory, never invent, recolor, or distort a vendor logo, and never add a company-name sticker when the recognizable logo is already present (Sal, matching the board). For Process visuals, the Cloudflare mark ships without an R2 label (Sal). A real mark is context; a guessed glyph is misinformation.
-
-## 6. System Views
-
-Board node 1471:2001. How complete DRAPER flows are composed across levels without losing causal clarity. The live reference is the approved Full System construction, reduced intact, never redrawn as a proxy, with every source element still editable.
-
-Composition rules:
-
-1. Build compact causal clusters. Keep the source, connection, and target close enough to read as one event. Clusters, not evenly spaced timeline columns (Sal).
-2. Route only on the orthogonal grid. Horizontal and vertical shafts only, hard 90 degree turns, open lanes.
-3. Center every port and connection piece. Enter or leave at the midpoint of an allowed edge; the connection piece sits over the shaft midpoint.
-4. Separate cross-level Relationships. Dotted, arrowless lines from a pill shape to its expanded piece in another level.
-
-Lane structure (Sal):
-
-- Broad pale semantic lanes, stacking only the lanes the flow actually uses, lane label in the upper left.
-- Expanded Logic and Function pieces sit above Process; expanded Artifact and Data pieces sit below it.
-- Every human action shows its responsible Actor.
-- A handoff reads as source, then connection statement, then target.
-- Whitespace marks chapters, branches, or level changes, never random gaps. Do not spread items evenly across a large canvas; widen the composition only when a dense cluster genuinely needs the space.
-- One axis carries flow; the other carries hierarchy, decomposition, support, or cross-level relationships.
-- Prefer progressive disclosure: overview first, detail in a separate sheet or mockup.
-- Baseline geometry: the layered reference is about 4662 px wide, inter-lane gap about 50 px, overview pieces start at roughly 72 to 76 percent of their sheet scale.
-
-Do not invent a simplified stand-in when an approved live component or system cluster already exists.
-
-## 7. Connections & Routing
-
-Board node 1472:2037. How one piece affects another: exact statement, visible direction, centered ports, orthogonal routes. The connection piece is part of the route, not a floating caption.
-
-**The connection piece.** A rectangle, not a pill (Buck 8.12). It carries the type's fixed icon, then the text, in the type's color. In a flow the text is only the exact present-tense statement of what is happening (the board's worked examples: SUBMITS WEB FORM, CREATES NOTIFICATION, NORMALIZED ANSWERS, STATUS SET, OPENS THE MESSAGE). In the legend inventory the text is the type word. The rectangle has an opaque pale fill and masks the line beneath it (Sal).
-
-**The five types**, each with its registered icon and color (colors and icons confirmed by Buck 8.12 from the live board set; the old rule that in-Process types stay charcoal is retired):
-
-| Type | Meaning | Icon | Color |
-|---|---|---|---|
-| Action | Intentional activity such as sending, reviewing, or approving | Pointer | Green, clearly distinct from Function teal |
-| Trigger | An event that starts something | Lightning bolt | Yellow |
-| Create | Writing or assembling a visible artifact | Pencil in square | Blue, aligning with Artifacts |
-| Output | A resulting data or artifact item. Not used merely because something appears downstream | Barred arrow | Pink, aligning with Data |
-| View | Opening, reading, or observing something | Aperture eye | Gray |
-
-**Ports and route geometry:**
-
-- Midpoint ports only. Enter or leave at the middle of the chosen edge: left or right midpoint for horizontal connections, top or bottom midpoint for vertical ones. Never attach to a corner (Sal).
-- All routes horizontal or vertical with exact 90 degree corners. No diagonal, slanted, curved, freehand, or rounded-elbow lines. Prefer no more than two bends (Sal).
-- Draw the shaft first, then center the connection piece over the longest clear straight segment, never on a corner.
-- Open line of sight. Route around pieces, never through or behind a piece, a pill shape, or unrelated text. Keep the full route visible.
-- Keep at least 24 px of visible shaft to the next piece and at least 20 px from unrelated geometry (Sal).
-- Prefer right-side midpoint or bottom-center midpoint for outgoing routes.
-- Shared trunks branch only at a clear 90 degree junction (Sal).
-
-**Cross-level Relationships.** Dotted and arrowless. Run directly from the pill shape to the expanded piece; never branch from a solid Process shaft. Use direct vertical routes when centers align. No giant diagonal dashed lines (Sal).
-
-## 8. Process Steps
-
-Board node 1473:2095. One bounded moment, composed with the approved reusable pieces and only the detail that matters in that step. Process Steps are a different register from System Views. The live reference is the Step 01 construction, which is also the native-scale comparison baseline (Sal).
-
-- Horizontal flow only, left to right. No separate vertical or narrow version.
-- Use only the relevant layers (Sal).
-- Customize the Interface: render the actual Surface, View, Purpose, and relevant Controls for this step. Purpose stays visible (Sal; the board names View, Purpose, Controls).
-- Same-level lines stay quiet: no horizontal relationship labels, no terminal arrowheads.
-- Cross-level labels stay explicit, naming only the vertical relationship that connects different levels, and appearing only when genuinely useful (Sal).
-- Use the approved pieces. A Step assembles library components; it does not redesign them.
-- Fixed native pixel tokens. Never shrink text to fit; widen the canvas instead (Sal).
-- The Step visual is the event. Piece-sheet anatomy, property explanations, and visual-decision scaffolding stay out of it.
-
-Step typography (Sal, not yet on a board sheet; Inter fallback stack, interiors Medium or Regular, nothing overly heavy):
-
-| Role | Spec |
-|---|---|
-| Layer label | 30 uppercase |
-| Step label | 24 uppercase |
-| Piece or action statement | 25 |
-| View | 21 |
-| Surface and Purpose labels | 19 uppercase |
-| Actor Stage, Role, Title | 19 Title Case |
-| Purpose value | 19 sentence case |
-| Cross-layer label | 17 uppercase |
-| Body and detail | 15 |
-
-## 9. Working → Final
-
-Board node 1474:2119. The working sheet teaches and tests the system. Final use removes scaffolding and applies the approved component. The two artifacts have different jobs; working explanations never get crammed into a final system view.
-
-- **Working** may show explanations, open decisions, measurements, representative permutations, technical metadata, relationship names, proposed labels, and dashed open states (board plus Sal).
-- **Final** shows only the approved visual encoding and the minimum text needed to identify the real piece: recognizable shapes, icons, colors, and placement, no loose inspection text, no tiny explanatory text, same components, bands, and connector rules (board plus Sal).
-- **Promotion gate**: nothing working is treated as final until semantics, visual choices, and QA are explicitly approved by Buck. Semantic approval, visual approval, and promotion are three separate decisions (Sal). Historical candidates are preserved; new proposed versions are created instead of silently overwriting history (Sal, matching the repo's own drafts convention).
-
-## 10. Workflow & QA
-
-Board node 1476:2143. The production gates that keep semantics, visual encoding, and final delivery from drifting apart.
-
-The gated sequence:
-
-1. Read current context: routing, current record, directly relevant sources, and the latest approved visual baseline.
-2. Classify meaning: separate identity, family-specific properties, the modifier properties (Relationship and Location), included children, connections, and fixed visual rules.
-3. Confirm the tree: present the bounded semantic structure before claiming the piece is understood.
-4. Build the working visual: real content, current components, governed icons, separately editable layers.
-5. Review at real scale: inspect native, grayscale, and review-size renders; check spacing, clipping, and causal reading order.
-6. Approve and promote: only the approved package moves into final documentation and becomes a future baseline.
-
-Visual release checks:
+Release checks, all inspected from fresh screenshots:
 
 | Check | What it covers |
-|---|---|
-| Geometry | Exact dimensions, corner treatment, stroke weight, padding, allowed ports |
-| Fidelity | Current piece anatomy, connection icons, registered marks, actual low-fidelity source form |
-| Legibility | Full color, grayscale, native scale, and review scale all remain readable |
-| Semantics | Every visible label has a job; no invented properties, values, or unsupported relationships |
-| Routing | Orthogonal paths, midpoint ports, centered connection pieces, no hidden line segments |
-| Editability | Every text, icon, shaft, shape, divider, and mockup element remains directly selectable |
+| --- | --- |
+| Geometry | dimensions, radius 4, hairlines 1 px, paddings from the Layout tokens, midpoint ports |
+| Fidelity | current piece treatments, registered marks, real content in mockups |
+| Legibility | readable at native and at review scale; no clipped or truncated text |
+| Semantics | every label has a job; no invented properties or unsupported relationships |
+| Routing | orthogonal, no crossings, no hidden segments, ties start from the right piece |
+| Editability | every text, shape, line, and mark is directly selectable; no flattened imports; no sealed frames |
 
-Additional flow checks before approval (Sal): the complete flow is understandable in about ten seconds; start, local clusters, and endpoint are obvious; no unexplained gap between cause and result; no crossings or hidden connectors; every human action has an Actor; every visible source and target is clear; cross-level dotted connections start from the correct piece; lane structure is consistent; current pieces are used, never stale historical variants; SVG and PNG exports match the board.
+Flow checks before approval: the whole part is understandable in about ten seconds; start, clusters, and end are obvious; no unexplained gap between cause and result; every human action has an actor; every visible source and target is clear.
 
-If an approved live component exists, clone it. A schematic substitute is a failed fidelity check, not a harmless shortcut.
+## 8. Open items
 
-## Modifiers
+1. Ruled 2026-09-06: the tag is an **Operation**. Kept for history.
+2. **Principles level tints** as variables, and whether Principles get a legend sheet each or one sheet listing seven.
+3. Drawn without one on the Part 1 board, 2026-09-06: the running processes are Agent actors on the rail and Piping Runner or Router cards below it; no Agent card exists. Open until Sam approves the board.
+4. Drawn on the Part 1 board, 2026-09-06: a CLI interface is a dark Code block with an Eyebrow naming the surface, such as `OPERATOR TERMINAL · GBO`, and one command line. Open until Sam approves the board.
+5. Drawn on the Part 1 board, 2026-09-06, as section 5 now describes. Open until Sam approves the board.
+6. **GrocerBot's Locations source list** and logotype colours.
+7. Ruled 2026-09-06 on the Part 1 board: the rail carries only the steps that change what the store knows; bookkeeping steps (locks, audit rows, workflow runs, dedup registration) are Operation fields inside the Piping or Data card that performs them. That is the Process versus Piping boundary for machinery steps. Kept for history.
+8. **Whether the canonical event envelope is an Artifact or Data.** Lexicon queue item 6. On the Part 1 board the events stream is a Data card and the Discord ops alert is the only Artifact.
+9. **Grain badges for keys, streams, and objects.** The Change Tag set has only ROW and TABLE, so Redis keys and the R2 object carry ROW and the stream carries TABLE. A KEY, STREAM, or OBJECT variant would need a new component.
+10. **The principle pill has no variant of its own.** On the Part 1 board and the Principles sheet it is a Color Tag, Orange variant, with its fill rebound to `Levels/Principles/Outline` and its text to `Levels/Principles/Color`. A dedicated Principles variant in the Color Tag set would remove the per-instance rebinding.
 
-The third grouping beside levels and pieces, named modifiers by Buck 8.12 (promoting the working label from the Eric call). It has no board sheet yet; its home on the board still needs building.
+## 9. What this document replaced
 
-Modifiers holds Relationships and Location: the only properties that span levels. That span is why they get their own home with deep visual and substance specification, instead of being defined over and over inside each piece. In each piece's own documentation they are ordinary rows under Properties, always present, empty when empty, per section 4. The Attributes category is retired (Buck 8.12); nothing else moves into modifiers to fill it.
-
-**Location.** One property with controlled values: Draper Website, Draper App, Notion, WhatsApp, GitHub, Supabase, and kin. Where a piece lives. Documented as a property row on the piece sheet; rendered on instances as the top-right mark-plus-name bar per section 5; carried on pill shapes as the mark icon in the trailing tag. Principles carry no Location (Buck 8.12). Whether one piece can carry two locations at once is open.
-
-**Relationships.** Working definition, drafted 8.12 for Buck to flesh out: a Relationship is a cross-level link. It points from a reference to the real thing at its own level: a pill shape in a flow up to the Function it names, a Function's Related Logic row up to that Logic, a Process piece down to the Data or Artifact it touches. It carries no event. A Connection makes something happen inside Process; a Relationship says where the full definition of a named thing lives, and documentation never duplicates down the line (8.9 transcript). Drawn as the dotted, arrowless line of section 7, vertical when centers align. The 8.8 working types Containment, Reference, and Association remain unverified working labels.
-
-## Board sync
-
-The 8.12 decisions recorded above that the board does not show yet. Each is a bounded fix, not a rework.
-
-1. Add the level color hexes to the Color Tokens sheet: `#E96B0C`, `#6D35E9`, `#2F8278`, `#1764C0`, `#D83A9A`, plus the Process treatment note.
-2. Type & Rhythm sheet: remove the 13 section-helper row and the footer sentence about the helper riding the baseline.
-3. Piece Sheets rules card: the fixed-order row drops Attributes. Live piece sheets: Attributes sections come off, Relationship and Location rows go in under Properties (empty allowed), and the Principle sheet's dashed Location box becomes an empty Location row.
-4. Pill shape trailing tags: location text becomes the registered mark icon (SUPABASE as text goes away); format text stays (JSONB, COLUMNS).
-5. The RF and EX badges on the Artifact references become artifact-type icons.
-6. Workflow & QA sheet: the classify step's wording updates off attributes.
-7. The distinct-green pass: separate the Interface and Action greens from Function teal, and recolor Agent once its color is decided.
-8. The green sweep of stale Function-green out of the old Connections and Interface material (standing since 8.9).
-9. Build the modifiers home: the Relationships and Location specification sheets.
-10. Fix the run-on helper on Connections & Routing: the "LIVE SOURCE → STATEMENT → TARGET" label and its helper sentence render merged ("TARGEThe connection pill is part of the route").
-11. Retitle the two Phase boards to the 8.12 names: Qualification and Intake, boundary text moving to the subtitle (Buck 8.12: "sure, relabel them").
-
-## Open items
-
-1. The Agent color under Actor. Buck 8.12: not green. Proposed 8.12, pending his eye: terracotta `#B0512E` with a pale fill near `#F9EFEA`, warm for maximum separation from the neighboring External gray and Internal blue.
-2. The Interface and Action green. Proposed 8.12, pending Buck's eye: one shared `#4C9A57` for both (the July kit's control green), reading clearly apart from Function teal `#2F8278`. The old 8.9 green-sweep item dissolves with Functions on teal; what remains is applying the pinned green and Agent color in the board pass and confirming nothing outside Functions wears teal.
-3. The Process treatment value (largely neutral, per piece).
-4. Whether one piece can carry two locations at once.
-5. The Relationships definition above is a working draft; Buck fleshes it out when the full system work resumes.
-6. The modifiers deep specification (visual and substance) beyond the definitions here.
+DRAPER's 8.12 written standard, now at `03 - Example/Visual Rules (DRAPER 8.12).md`. Its ten sections were written for the FigJam board and a six-level system. Its type ladder (48, 28, 17, 14, 12), its geometry (radius 2 to 3, 64 px margins, 1744 px sheets), its pill shape with level-code badges, its Connections with five types, and its Board sync and Open items lists are history. Its build discipline survives unchanged in `Instructions.md`.

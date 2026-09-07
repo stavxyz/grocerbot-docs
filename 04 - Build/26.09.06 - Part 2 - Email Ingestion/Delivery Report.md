@@ -50,3 +50,17 @@ Two full-board screenshots at native scale, cropped and inspected: the rail in f
 ## Next
 
 Sam's three approvals on each board. Then Part 3, notification delivery, which both boards lead into, or the SYSTEM REGISTRY page.
+
+## Issues filed, 2026-09-07
+
+Sam authorised filing on `parconditio/grocerbot-orchestrator` for findings verified against the code. Filed, each with file and line at `dev` `1304813`:
+
+- #263 vendor_poll: cart, orders, invoices, and delivery events open child runs that only the timeout reaper closes (Part 1 finding 1)
+- #264 emit_domain_event: email-sourced canonical events open no workflow run and register no dedup_ratchet (Part 2 finding 1)
+- #265 process_email: dedup SET NX runs before processing, so a failure afterwards turns every Faktory retry into a duplicate (Part 2 finding 7)
+- #266 system_metrics_dedup: parse_dedup_key mis-buckets dedup:v2 keys under tenant v2 (orchestrator brief)
+- #267 email-worker: a webhook non-2xx rejects the message without the .failed marker, and nothing reads .failed (Part 2 finding 2)
+- #268 docs and config describe shapes the code no longer has: README, email-processing.md, secrets.md, tenants.yaml parsers, email_rules.yaml (Part 2 conflicts 1, 3, 4 and finding 8)
+- #269 vendor_poll: the notifications poll reads page 0 of 50 only (Part 1 finding 2)
+
+Not filed: the undeduped CLI and email doors, already #60; the email dedup key scoped by the Worker's hint, certain in mechanics but only material with a second tenant; the unread attachments and the unbuilt `email_attachment` fetch rule, a design gap rather than a defect; the dead login schedule, harmless; the three unconsumed events, which the handler's own comment already records and #268 covers on the documentation side.

@@ -62,6 +62,10 @@ Not documentation drift. Things the code does that look wrong or unfinished, sur
 - Both mention maps in `discord.{dev,prod}.yaml` are empty, so the configured `submittedBy` and `buyers` mentions never render.
 - `scheduler.py` skips a `vendor.poll` schedule silently, with a warning, when no tenant subscribes to the vendor.
 
+## Issues filed
+
+On 2026-09-07, with Sam's authorisation, seven of the findings above and from the Part 1 and Part 2 runs were filed on the repository as issues #263 to #269. The list and the reasons some were not filed are in each part's Delivery Report under `04 - Build/`.
+
 ## Full inventory
 
 A read-only sweep on 2026-09-06 produced a per-item inventory with `file:line` citations covering processes, job types, events, human touchpoints, external systems, the workflow framework, parsers and pipelines, and stale material. Its claims about registration, key shapes, dead code, and empty mention maps were spot-checked against the source and held. The inventory itself was a working artifact of that session and is not stored here; the citations above point at the same places.
